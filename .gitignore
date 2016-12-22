@@ -1,5 +1,6 @@
 *.log
 *.pot
 *.pyc
+node_modules
 .gitignore
 local_settings.py
