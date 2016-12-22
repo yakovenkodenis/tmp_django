@@ -18,7 +18,7 @@ def todofinish(request, id=''):
     if todo.flag == '1':
         todo.flag = '0'
         todo.save()
-        return HttpResponseRedirect('/todos/')
+        return HttpResponseRedirect('/')
     todolist = Todo.objects.filter(flag=1)
     return render(request, 'todo/simpleTodo.html',
                            {'todolist': todolist})
@@ -28,7 +28,7 @@ def todoback(request, id=''):
     if todo.flag == '0':
         todo.flag = '1'
         todo.save()
-        return HttpResponseRedirect('/todos/')
+        return HttpResponseRedirect('/')
     todolist = Todo.objects.filter(flag=1)
     return render(request, 'todo/simpleTodo.html', {'todolist': todolist})
 
@@ -39,7 +39,7 @@ def tododelete(request, id=''):
         raise Http404
     if todo:
         todo.delete()
-        return HttpResponseRedirect('/todos/')
+        return HttpResponseRedirect('/')
     todolist = Todo.objects.filter(flag=1)
     return render(reqeust, 'todo/simpleTodo.html', {'todolist': todolist})
 
@@ -67,13 +67,13 @@ def updatetodo(request, id=''):
         try:
             todo = Todo.objects.get(id=id)
         except Exception:
-            return HttpResponseRedirect('/todos/')
+            return HttpResponseRedirect('/')
         atodo = request.POST['todo']
         priority = request.POST['priority']
         todo.todo = atodo
         todo.priority = priority
         todo.save()
-        return HttpResponseRedirect('/todos/')
+        return HttpResponseRedirect('/')
     else:
         try:
             todo = Todo.objects.get(id=id)
